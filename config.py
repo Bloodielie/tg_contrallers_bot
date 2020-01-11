@@ -11,7 +11,7 @@ password = ''
 db_name = 'controller_base'
 user = 'postgres'
 host = 'localhost'
-password_db = 1234
+password_db = 
 
 
 SAVE_DEFAULT_TABLE = 'png/table.gif'
