@@ -1,0 +1,6 @@
+vk_api == 11.6.1
+Pillow == 7.0.0
+aiogram == 2.5.3
+peewee == 3.13.1
+peewee_async == 0.6.3a0
+aiopg == 1.0.0
