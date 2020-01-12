@@ -4,14 +4,14 @@ import peewee_async
 import peewee
 import asyncio
 
-token = ''
-login = ''
-password = ''
+token =
+login =
+password =
 
-db_name = 'controller_base'
+db_name =
 user = 'postgres'
 host = 'localhost'
-password_db = 
+password_db =
 
 
 SAVE_DEFAULT_TABLE = 'png/table.gif'
@@ -44,7 +44,8 @@ MESSAGE = {
     "settings_display_msg": 'Настройка отображения постов.',
     "settings_display_inside_msg": 'Теперь информация отображается {display}',
     "settings_time_msg": 'Настройка времени получения постов.',
-    "settings_time_inside_msg": 'Время отборки постов изменено на {final_time}'
+    "settings_time_inside_msg": 'Время отборки постов изменено на {final_time}',
+    'info_msg': 'Бот для отслеживать контроллеров в г.Бресте.\nПочти точно такой же бот в telegram:\nhttps://vk.com/anti_controllers'
 }
 
 MESSAGE_KEYBOARD = {
@@ -52,6 +53,7 @@ MESSAGE_KEYBOARD = {
     'menu_keyb': 'Меню',
     'start_keyb_kontroler': 'Контроллеры',
     'start_keyb_settings': 'Настройки',
+    'start_keyb_info': 'Информация',
     'kontroler_keyb_clear_stop': 'Чистые остановки',
     'kontroler_keyb_dirty_stop': 'Грязные остановки',
     'kontroler_keyb_bus': 'Автобусы',
@@ -68,7 +70,7 @@ MESSAGE_KEYBOARD = {
     'settings_keyb_display_inside_2': 'Текст',
     'settings_keyb_sort': 'Сортировка',
     'settings_keyb_sort_inside_1': 'Время',
-    'settings_keyb_sort_inside_2': 'Сообщения',
+    'settings_keyb_sort_inside_2': 'Сообщения'
 }
 
 bus_number = ['1', '1А', '2', '2А', '3', '4', '5', '6', '7', '8', '9', '10', '11', '11А', '12', '12А', '13', '13А', '14', '15', '15А', '15Б', '16', '17', '18', '19', '20', '21', '21А', '21Б', '22', '23', '23А', '23Б', '24', '24А', '25', '26', '27', '27А', '28', '29', '30', '30А', '31', '32', '33', '34', '35', '36', '37', '37А', '38', '39', '39А', '39Б', '40', '41', '42', '43', '44', '44А', '45', '46', '47', '50']
