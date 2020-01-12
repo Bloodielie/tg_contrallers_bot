@@ -43,6 +43,8 @@ async def message(msg: types.Message):
             data_[0].scens = "settings"
             await manager.update(data_[0])
             await msg.answer(MESSAGE["settings_msg"], reply_markup=keyboard.settings_keyboard())
+        elif msg.text == MESSAGE_KEYBOARD['start_keyb_info']:
+            await msg.answer(MESSAGE["info_msg"], reply_markup=keyboard.start_keyboard())
         elif msg.text == MESSAGE_KEYBOARD['menu_keyb']:
             await msg.answer(MESSAGE["menu_msg"], reply_markup=keyboard.start_keyboard())
     else:
