@@ -7,6 +7,7 @@ class Keyboard:
         keyboard = ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['start_keyb_kontroler']))
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['start_keyb_settings']))
+        keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['start_keyb_info']))
         return keyboard
 
     def kontroler_keyboard(self):
