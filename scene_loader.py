@@ -5,12 +5,13 @@ from aiogram import Bot
 
 
 class BaseScene:
-    def __init__(self, bot: Bot, keyboard, lang, manager_db, model_db):
+    def __init__(self, bot: Bot, keyboard, lang, manager_db, model_db, getter):
         self.bot = bot
         self.keyboard = keyboard
         self.lang = lang
         self.manager = manager_db
         self.model = model_db
+        self.getter = getter
 
     async def call_handler(self, call: CallbackQuery):
         pass
@@ -44,7 +45,7 @@ class Loader:
         spec.loader.exec_module(module)
         return module
 
-    def init_scene(self, scene_name, bot, keyboard, lang, manager_db, model_db):
+    def init_scene(self, scene_name, bot, keyboard, lang, manager_db, model_db, getter):
         scene = self.get_scene_by_name(scene_name)
-        initialized_scene = scene(bot=bot, keyboard=keyboard, lang=lang, manager_db=manager_db, model_db=model_db)
+        initialized_scene = scene(bot=bot, keyboard=keyboard, lang=lang, manager_db=manager_db, model_db=model_db, getter=getter)
         return initialized_scene
