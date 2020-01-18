@@ -5,9 +5,9 @@ from scene_loader import Loader
 from config import login, password, token, MESSAGE, MESSAGE_KEYBOARD
 from database import database, User
 from keyboard import Keyboard
-from utils.write_data_json import WriteBusStop
 import vk_api
 import peewee_async
+from utils.api_getter import ApiGetter
 
 bot = Bot(token=token)
 dp = Dispatcher(bot)
@@ -16,12 +16,11 @@ dp = Dispatcher(bot)
 load = Loader()
 keyboard = Keyboard()
 manager = peewee_async.Manager(database)
+getter_data = ApiGetter('http://127.0.0.1:8000/bus_stop')
 
 
 vk = vk_api.VkApi(login=login, password=password)
 vk.auth()
-task_func = WriteBusStop(vk)
-bot.loop.create_task(task_func.on_task_write(300))
 
 
 @dp.message_handler(commands=['start'])
@@ -51,7 +50,7 @@ async def message(msg: types.Message):
         await msg.answer('Пиши /start', reply_markup=keyboard.start_keyboard())
 
     scene = data_[0].scens
-    await load.init_scene(scene, bot, keyboard, MESSAGE, manager, User).message_handler(msg)
+    await load.init_scene(scene, bot, keyboard, MESSAGE, manager, User, getter_data).message_handler(msg)
 
 
 if __name__ == '__main__':

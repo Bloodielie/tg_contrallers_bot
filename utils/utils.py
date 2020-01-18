@@ -1,6 +1,3 @@
-from time import time
-
-
 class BusStopGet:
     def __init__(self, vk):
         self.vk = vk
