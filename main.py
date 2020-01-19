@@ -8,6 +8,10 @@ from keyboard import Keyboard
 import vk_api
 import peewee_async
 from utils.api_getter import ApiGetter
+import logging
+
+logging.basicConfig(filename="error.log", format='\n%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.ERROR)
+logger = logging.getLogger(__name__)
 
 bot = Bot(token=token)
 dp = Dispatcher(bot)
