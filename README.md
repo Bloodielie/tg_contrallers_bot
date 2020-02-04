@@ -1,7 +1,11 @@
 # tg_contrallers_bot
-**Бот который показывает местнахождение контроллеров в г.Бресте.**  
-Для нормальной работы бота необходим python 3.7.6  
-В проекте используется бд PostgreSQL  
-Все библиотеки указанны в requirements.txt  
-Настроить данные для коннекта бд, сообщения в чате, сообщения на кнопках можно в config.py
-> Это реализация бота который получает данные из api(https://github.com/Bloodielie/api_controllers)
+**A bot that shows the location of the controllers in Brest, Gomel, Grodno(Belarus).**
+##Database
+ - PostgreSQL
+##Python version
+ - python 3.7.6
+##Libraries
+ - requirements.txt
+##Settings
+ - In config.py
+> works with [API](https://github.com/Bloodielie/api_controllers)
