@@ -1,18 +1,18 @@
 # tg_contrallers_bot
 **A bot that shows the location of the controllers in Brest, Gomel, Grodno(Belarus).**
-##Database
+## Database
 
  - PostgreSQL
  
-##Python version
+## Python version
 
  - python 3.7.6
  
-##Libraries
+## Libraries
 
  - requirements.txt
  
-##Settings
+## Settings
 
  - In config.py
  
