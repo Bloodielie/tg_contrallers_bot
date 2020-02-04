@@ -1,5 +1,3 @@
-from utils.json import JsonUtils
-
 token = ''
 login = ''
 password = ''
@@ -17,12 +15,7 @@ DEFAULT_TABLE_BUS = 'png/таблицадляавтобуса.png'
 SAVE_DEFAULT_TABLE_BUS = 'png/tablebus.gif'
 SAVE_DEFAULT_TABLE_TROLLEYBUSES = 'png/tabletrolleybuses.gif'
 
-JSON_BUS = 'json/busstop.json'
-JSON_TROLLEYBUSES = 'json/trolleybusesstop.json'
-
 FONT_PNG = 'font/impact.ttf'
-
-stop_bus = JsonUtils('json/stopbus.json').get_json()
 
 MESSAGE_KEYBOARD = {
     'back_keyb': 'Назад',
