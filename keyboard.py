@@ -30,7 +30,8 @@ class Keyboard:
         keyboard = ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['settings_keyb_time']))
         keyboard.insert(KeyboardButton(MESSAGE_KEYBOARD['settings_keyb_display']))
-        keyboard.insert(KeyboardButton(MESSAGE_KEYBOARD['settings_keyb_sort']))
+        keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['settings_keyb_sort']))
+        keyboard.insert(KeyboardButton(MESSAGE_KEYBOARD['settings_city']))
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['back_keyb']))
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['menu_keyb']))
         return keyboard
@@ -59,6 +60,15 @@ class Keyboard:
         keyboard = ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['settings_keyb_display_inside_1']))
         keyboard.insert(KeyboardButton(MESSAGE_KEYBOARD['settings_keyb_display_inside_2']))
+        keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['back_keyb']))
+        keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['menu_keyb']))
+        return keyboard
+
+    def settings_city_keyboard(self):
+        keyboard = ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
+        keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['settings_city_1']))
+        keyboard.insert(KeyboardButton(MESSAGE_KEYBOARD['settings_city_2']))
+        keyboard.insert(KeyboardButton(MESSAGE_KEYBOARD['settings_city_3']))
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['back_keyb']))
         keyboard.add(KeyboardButton(MESSAGE_KEYBOARD['menu_keyb']))
         return keyboard

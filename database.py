@@ -14,6 +14,7 @@ class User(peewee.Model):
     sort = peewee.CharField(default="Время", max_length=20)
     display = peewee.CharField(default="Фото", max_length=20)
     scens = peewee.CharField(default="kontroler", max_length=20)
+    city = peewee.CharField(default="brest", max_length=10)
 
 
 User.create_table(True)
