@@ -1,7 +1,7 @@
 from scene_loader import BaseScene
 from aiogram.types import Message
 from utils.utils import deconverting_time
-from config import MESSAGE_KEYBOARD, MESSAGE
+from configuration.message import MESSAGE_KEYBOARD, MESSAGE
 from utils.keyboard import create_keyboard
 from configuration.keyboard import menu_keyboard, settings_keyboard, settings_time_keyboard
 from utils.utils import get_data_from_list

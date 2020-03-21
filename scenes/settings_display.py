@@ -1,6 +1,6 @@
 from scene_loader import BaseScene
 from aiogram.types import Message
-from config import MESSAGE_KEYBOARD, MESSAGE
+from configuration.message import MESSAGE_KEYBOARD, MESSAGE
 from utils.keyboard import create_keyboard
 from configuration.keyboard import menu_keyboard, settings_keyboard
 

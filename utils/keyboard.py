@@ -1,7 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 
-def create_keyboard(data: list):
+def create_keyboard(data: list) -> ReplyKeyboardMarkup:
     keyboard = ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
     for list_data in data:
         row = []

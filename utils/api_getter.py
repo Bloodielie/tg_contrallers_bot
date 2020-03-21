@@ -1,20 +1,16 @@
 import aiohttp
 
+
 class ApiGetter:
-    def __init__(self, short_url):
-        self.url = short_url
+    def __init__(self, domen: str, api_prefix: str = 'api'):
+        self.url = f'{domen}/{api_prefix}'
         self.s = aiohttp.ClientSession()
 
-    async def get_data_bus(self, city: str, type_stop: str, type_transport: str = 'bus', transport_number: str = None, **kwargs) -> list:
-        if not transport_number:
-            url = f'{self.url}/{city}/{type_stop}'
-        elif type_transport == 'trolleybuses':
-            name_url = self.url.replace('bus', 'trolleybuses')
-            url = f'{name_url}/{city}/{type_stop}/{transport_number}'
-        else:
-            url = f'{self.url}/{city}/{type_stop}/{transport_number}'
-        async with self.s.get(url, params=kwargs) as response:
-            return self.dict_in_list(await response.json())
+    async def get_date(self, method: str, type_return: str = 'dict', **kwargs):
+        async with self.s.get(f'{self.url}/{method}', params=kwargs) as response:
+            if type_return == 'list':
+                return self.dict_in_list(await response.json())
+            return await response.json()
 
     @staticmethod
     def dict_in_list(date: dict) -> list:

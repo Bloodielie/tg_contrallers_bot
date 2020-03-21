@@ -18,12 +18,13 @@ class ImgCreate:
         self.transparent.save(name)
 
 
-def img_busstop(name_png, _dict, cordinates_x, cordinate_y, y_step, color, font, name_png_first='png/таблица.png'):
+def img_busstop(name_png: str, _data: list, name_png_first: str = 'png/таблица.png', cordinates_x: tuple = (60, 650, 1250),
+                cordinate_y: int = 45, y_step: int = 92, color: tuple = (34, 34, 34), font: str = 'font/impact.ttf'):
     """ Рисования изображения с данными """
     img_tuls = ImgCreate(name_png_first)
     cordinate_y_ = cordinate_y
     font = ImageFont.truetype(font, 34)
-    for value in _dict:
+    for value in _data:
         cordinate_y_ += y_step
         img_tuls.text_drawing((cordinates_x[0], cordinate_y_), value[0].capitalize(), color, font)
         img_tuls.text_drawing((cordinates_x[1], cordinate_y_), str(value[1][0]), color, font)

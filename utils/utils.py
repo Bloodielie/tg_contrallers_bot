@@ -1,18 +1,6 @@
 from configuration.message import MESSAGE_KEYBOARD
 
 
-class BusStopGet:
-    def __init__(self, vk):
-        self.vk = vk
-
-    def get_post_un_time(self, count=100, group_id=72869598):
-        """ Получения постов """
-        wall = self.vk.method('wall.get', values={'owner_id': -group_id, 'count': count})
-        for i in wall['items']:
-            temporary_tuple = (i['text'].lower(), i['date'])
-            yield temporary_tuple
-
-
 def converting_time(sec_time: int):
     """ Добавления правильного окончания для времени """
     hours = sec_time // 3600
@@ -53,7 +41,7 @@ def deconverting_time(time: str):
     return sec
 
 
-def text_display(data: dict):
+def text_display(data: list):
     """ Представление словаря в тексте """
     text = '\n'.join([f'{stop[0]}, {stop[1][0]}, {stop[1][1]}' for stop in data])
     if text:

@@ -16,7 +16,7 @@ from configuration.keyboard import menu_keyboard, start_keyboard
 
 load = Loader()
 manager = peewee_async.Manager(database)
-getter_data = ApiGetter('http://127.0.0.1:8000/bus_stop')
+getter_data = ApiGetter('http://127.0.0.1:8000')
 config = Config()
 
 bot = Bot(token=config.get_data('app', 'TELEGRAM_TOKEN'))
