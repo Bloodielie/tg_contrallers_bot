@@ -1,8 +1,13 @@
 from peewee_asyncext import PostgresqlExtDatabase
 import peewee
-from config import db_name, user, host, password_db
+from configuration.config import Config
 
-database = PostgresqlExtDatabase(db_name, user=user, host=host, password=password_db, register_hstore=False)
+config = Config()
+database = PostgresqlExtDatabase(config.get_data('app', 'DB_NAME'),
+                                 user=config.get_data('app', 'DB_USER'),
+                                 host=config.get_data('app', 'DB_HOST'),
+                                 password=config.get_data('app', 'DB_PASSWORD'),
+                                 register_hstore=False)
 
 
 class User(peewee.Model):
@@ -12,9 +17,9 @@ class User(peewee.Model):
     user_id = peewee.IntegerField(unique=True)
     time = peewee.IntegerField(default=10800)
     sort = peewee.CharField(default="Время", max_length=20)
-    display = peewee.CharField(default="Фото", max_length=20)
-    scens = peewee.CharField(default="kontroler", max_length=20)
+    display = peewee.CharField(default="photo", max_length=20)
     city = peewee.CharField(default="brest", max_length=10)
+    scens = peewee.CharField(default="start", max_length=20)
 
 
 User.create_table(True)

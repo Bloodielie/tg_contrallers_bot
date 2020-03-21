@@ -1,24 +1,36 @@
 from scene_loader import BaseScene
 from aiogram.types import Message
-from config import MESSAGE_KEYBOARD
-
-times_tabl = ['30 мин', '1 час', '1 час 30 мин', '2 часа', '2 часа 30 мин', '3 часа']
+from config import MESSAGE_KEYBOARD, MESSAGE
+from utils.keyboard import create_keyboard
+from configuration.keyboard import settings_sort_keyboard, settings_display_keyboard, settings_time_keyboard, menu_keyboard, \
+    settings_city_keyboard
 
 
 class Scene(BaseScene):
     async def message_handler(self, message: Message):
-        data = await self.manager.get(self.model, user_id=message.from_user.id)
-        if message.text == MESSAGE_KEYBOARD['settings_keyb_sort']:
-            data.scens = 'settings_sort'
-            await self.manager.update(data)
-            await self.bot.send_message(message.from_user.id, self.lang['settings_sort_msg'], reply_markup=self.keyboard.settings_sort_keyboard())
-        elif message.text == MESSAGE_KEYBOARD['settings_keyb_display']:
-            data.scens = 'settings_display'
-            await self.manager.update(data)
-            await self.bot.send_message(message.from_user.id, self.lang['settings_display_msg'], reply_markup=self.keyboard.settings_display_keyboard())
-        elif message.text == MESSAGE_KEYBOARD['settings_keyb_time']:
-            data.scens = 'settings_time'
-            await self.manager.update(data)
-            await self.bot.send_message(message.from_user.id, self.lang['settings_time_msg'], reply_markup=self.keyboard.settings_time_keyboard())
-        elif message.text == MESSAGE_KEYBOARD['back_keyb']:
-            await self.bot.send_message(message.from_user.id, self.lang['menu_msg'], reply_markup=self.keyboard.start_keyboard())
+        msg_text = message.text.lower()
+        if msg_text == MESSAGE_KEYBOARD['settings_keyb_sort'].lower():
+            self.user_data[0].scens = 'settings_sort'
+            await self.manager.update(self.user_data[0])
+            keyb = create_keyboard(settings_sort_keyboard)
+            await message.answer(MESSAGE['settings_sort_msg'], reply_markup=keyb)
+        elif msg_text == MESSAGE_KEYBOARD['settings_keyb_display'].lower():
+            self.user_data[0].scens = 'settings_display'
+            await self.manager.update(self.user_data[0])
+            keyb = create_keyboard(settings_display_keyboard)
+            await message.answer(MESSAGE['settings_display_msg'], reply_markup=keyb)
+        elif msg_text == MESSAGE_KEYBOARD['settings_keyb_time'].lower():
+            self.user_data[0].scens = 'settings_time'
+            await self.manager.update(self.user_data[0])
+            keyb = create_keyboard(settings_time_keyboard)
+            await message.answer(MESSAGE['settings_time_msg'], reply_markup=keyb)
+        elif msg_text == MESSAGE_KEYBOARD['settings_city'].lower():
+            self.user_data[0].scens = 'settings_city'
+            await self.manager.update(self.user_data[0])
+            keyb = create_keyboard(settings_city_keyboard)
+            await message.answer(MESSAGE['settings_time_msg'], reply_markup=keyb)
+        elif msg_text == MESSAGE_KEYBOARD['back_keyb'].lower():
+            self.user_data[0].scens = 'menu'
+            await self.manager.update(self.user_data[0])
+            keyb = create_keyboard(menu_keyboard)
+            await message.answer(MESSAGE['menu_msg'], reply_markup=keyb)

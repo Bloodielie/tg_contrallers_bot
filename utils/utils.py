@@ -1,3 +1,6 @@
+from configuration.message import MESSAGE_KEYBOARD
+
+
 class BusStopGet:
     def __init__(self, vk):
         self.vk = vk
@@ -57,3 +60,13 @@ def text_display(data: dict):
         return text
     else:
         return 'Остутствуют сообщения людей.'
+
+
+def get_data_from_list(data_list: list) -> list:
+    text_city = []
+    for _ in data_list:
+        for text_keyb in _:
+            if text_keyb == MESSAGE_KEYBOARD['back_keyb'] or text_keyb == MESSAGE_KEYBOARD['menu_keyb']:
+                continue
+            text_city.append(text_keyb)
+    return text_city

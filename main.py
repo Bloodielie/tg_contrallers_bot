@@ -2,59 +2,48 @@ from aiogram import Bot, types
 from aiogram.utils import executor
 from aiogram.dispatcher import Dispatcher
 from scene_loader import Loader
-from config import login, password, token, MESSAGE, MESSAGE_KEYBOARD
+from configuration.config import Config
+from configuration.message import MESSAGE_KEYBOARD, MESSAGE
 from database import database, User
-from keyboard import Keyboard
-import vk_api
 import peewee_async
 from utils.api_getter import ApiGetter
 import logging
+from utils.keyboard import create_keyboard
+from configuration.keyboard import menu_keyboard, start_keyboard
 
-logging.basicConfig(filename="error.log", format='\n%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.ERROR)
-logger = logging.getLogger(__name__)
-
-bot = Bot(token=token)
-dp = Dispatcher(bot)
-
+#logging.basicConfig(filename="error.log", format='\n%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.ERROR)
+#logger = logging.getLogger(__name__)
 
 load = Loader()
-keyboard = Keyboard()
 manager = peewee_async.Manager(database)
 getter_data = ApiGetter('http://127.0.0.1:8000/bus_stop')
+config = Config()
 
-
-vk = vk_api.VkApi(login=login, password=password)
-vk.auth()
+bot = Bot(token=config.get_data('app', 'TELEGRAM_TOKEN'))
+dp = Dispatcher(bot)
 
 
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
     id = message.from_user.id
-    await manager.create_or_get(User, user_id=id)
-    await message.answer(MESSAGE['start_msg'], reply_markup=keyboard.start_keyboard())
+    user = (await manager.create_or_get(User, user_id=id))[0]
+    keyb = create_keyboard(start_keyboard)
+    if not user.scens == 'start':
+        user.scens = 'start'
+        await manager.update(user)
+    await message.answer(MESSAGE['start_msg'], reply_markup=keyb)
 
 
 @dp.message_handler()
 async def message(msg: types.Message):
-    data_ = await manager.create_or_get(User, user_id=msg.from_user.id)
-    if not data_[1]:
-        if msg.text == MESSAGE_KEYBOARD['start_keyb_kontroler']:
-            data_[0].scens = "kontroler"
-            await manager.update(data_[0])
-            await msg.answer(MESSAGE["kontroler_msg"], reply_markup=keyboard.kontroler_keyboard())
-        elif msg.text == MESSAGE_KEYBOARD['start_keyb_settings']:
-            data_[0].scens = "settings"
-            await manager.update(data_[0])
-            await msg.answer(MESSAGE["settings_msg"], reply_markup=keyboard.settings_keyboard())
-        elif msg.text == MESSAGE_KEYBOARD['start_keyb_info']:
-            await msg.answer(MESSAGE["info_msg"], reply_markup=keyboard.start_keyboard())
-        elif msg.text == MESSAGE_KEYBOARD['menu_keyb']:
-            await msg.answer(MESSAGE["menu_msg"], reply_markup=keyboard.start_keyboard())
-    else:
-        await msg.answer('Пиши /start', reply_markup=keyboard.start_keyboard())
+    data = await manager.create_or_get(User, user_id=msg.from_user.id)
+    if msg.text == MESSAGE_KEYBOARD['menu_keyb']:
+        data[0].scens = "menu"
+        await manager.update(data[0])
+        keyb = create_keyboard(menu_keyboard)
+        await msg.answer(MESSAGE["menu_msg"], reply_markup=keyb)
 
-    scene = data_[0].scens
-    await load.init_scene(scene, bot, keyboard, MESSAGE, manager, User, getter_data).message_handler(msg)
+    await load.init_scene(data[0].scens, bot, manager, data, getter_data).message_handler(msg)
 
 
 if __name__ == '__main__':
