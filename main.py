@@ -4,7 +4,7 @@ from aiogram.dispatcher import Dispatcher
 from scene_loader import Loader
 from configuration.config import Config
 from configuration.message import MESSAGE_KEYBOARD, MESSAGE
-from database import database, User
+from models import database, User
 import peewee_async
 from utils.api_getter import ApiGetter
 import logging

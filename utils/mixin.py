@@ -3,7 +3,7 @@ from .pil import img_busstop
 from .utils import text_display
 from utils.keyboard import create_keyboard
 from configuration.keyboard import kontroler_keyboard
-from database import User
+from models import User
 from aiogram.types import Message
 
 
