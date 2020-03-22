@@ -22,12 +22,12 @@ class Scene(BaseScene):
                                                         sort=data.sort.capitalize())
             await mixin_create_kontroler(data, temporary_data, message, DEFAULT_TABLE, SAVE_DEFAULT_TABLE)
         elif message.text == MESSAGE_KEYBOARD['kontroler_keyb_bus']:
-            data.scens = 'kontroler_bus'
+            data.scens = 'controller_bus'
             await self.manager.update(data)
             keyb = create_keyboard(kontroler_bus)
             await message.answer(MESSAGE['kontroler_bus_msg'], reply_markup=keyb)
         elif message.text == MESSAGE_KEYBOARD['kontroler_keyb_trolleybus']:
-            data.scens = 'kontroler_trolleybus'
+            data.scens = 'controller_trolleybus'
             await self.manager.update(data)
             keyb = create_keyboard(kontroler_bus)
             await message.answer(MESSAGE['kontroler_trolleubus_msg'], reply_markup=keyb)

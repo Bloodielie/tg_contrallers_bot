@@ -9,4 +9,3 @@ def create_keyboard(data: list) -> ReplyKeyboardMarkup:
             row.append(KeyboardButton(str(value)))
         keyboard.row(*row)
     return keyboard
-

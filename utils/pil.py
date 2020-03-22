@@ -22,11 +22,10 @@ def img_busstop(name_png: str, _data: list, name_png_first: str = 'png/табл�
                 cordinate_y: int = 45, y_step: int = 92, color: tuple = (34, 34, 34), font: str = 'font/impact.ttf'):
     """ Рисования изображения с данными """
     img_tuls = ImgCreate(name_png_first)
-    cordinate_y_ = cordinate_y
     font = ImageFont.truetype(font, 34)
     for value in _data:
-        cordinate_y_ += y_step
-        img_tuls.text_drawing((cordinates_x[0], cordinate_y_), value[0].capitalize(), color, font)
-        img_tuls.text_drawing((cordinates_x[1], cordinate_y_), str(value[1][0]), color, font)
-        img_tuls.text_drawing((cordinates_x[2], cordinate_y_), str(value[1][1]), color, font)
+        cordinate_y += y_step
+        img_tuls.text_drawing((cordinates_x[0], cordinate_y), value[0].capitalize(), color, font)
+        img_tuls.text_drawing((cordinates_x[1], cordinate_y), str(value[1][0]), color, font)
+        img_tuls.text_drawing((cordinates_x[2], cordinate_y), str(value[1][1]), color, font)
     img_tuls.img_save(name_png)

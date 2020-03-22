@@ -10,17 +10,17 @@ database = PostgresqlExtDatabase(config.get_data('app', 'DB_NAME'),
                                  register_hstore=False)
 
 
-class User(peewee.Model):
+class UserSettings(peewee.Model):
     class Meta:
         database = database
 
-    user_id = peewee.IntegerField(unique=True)
+    user_id = peewee.IntegerField(unique=True, index=True)
     time = peewee.IntegerField(default=10800)
     sort = peewee.CharField(default="Время", max_length=20)
     display = peewee.CharField(default="фото", max_length=20)
     city = peewee.CharField(default="brest", max_length=10)
-    scens = peewee.CharField(default="start", max_length=20)
+    scens = peewee.CharField(default="start", max_length=50)
 
 
-User.create_table(True)
+UserSettings.create_table(True)
 database.set_allow_sync(False)

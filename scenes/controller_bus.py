@@ -18,7 +18,7 @@ class Scene(BaseScene):
         temporary_data = await self.getter.get_date(f'{data.city}/dirty/bus/{text}', type_return='list', time=data.time,
                                                     sort=data.sort.capitalize())
         if text == MESSAGE_KEYBOARD['back_keyb']:
-            data.scens = 'kontroler'
+            data.scens = 'сontroller'
             await self.manager.update(data)
             keyb = create_keyboard(kontroler_keyboard)
             await message.answer(MESSAGE['kontroler_msg'], reply_markup=keyb)

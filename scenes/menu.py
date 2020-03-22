@@ -9,7 +9,7 @@ class Scene(BaseScene):
     async def message_handler(self, message: Message):
         msg_text = message.text.lower()
         if msg_text == MESSAGE_KEYBOARD['start_keyb_kontroler'].lower():
-            self.user_data[0].scens = "kontroler"
+            self.user_data[0].scens = "сontroller"
             await self.manager.update(self.user_data[0])
             keyb = create_keyboard(kontroler_keyboard)
             await message.answer(MESSAGE["kontroler_msg"], reply_markup=keyb)

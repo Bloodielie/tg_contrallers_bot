@@ -5,8 +5,7 @@ from aiogram import Bot
 
 
 class BaseScene:
-    def __init__(self, bot: Bot, manager_db, user_data, getter):
-        self.bot = bot
+    def __init__(self, manager_db, user_data, getter):
         self.manager = manager_db
         self.user_data = user_data
         self.getter = getter
@@ -43,7 +42,7 @@ class Loader:
         spec.loader.exec_module(module)
         return module
 
-    def init_scene(self, scene_name, bot, manager_db, user_data, getter):
+    def init_scene(self, scene_name, manager_db, user_data, getter):
         scene = self.get_scene_by_name(scene_name)
-        initialized_scene = scene(bot=bot, manager_db=manager_db, user_data=user_data, getter=getter)
+        initialized_scene = scene(manager_db=manager_db, user_data=user_data, getter=getter)
         return initialized_scene

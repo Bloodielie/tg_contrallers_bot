@@ -7,7 +7,7 @@ MESSAGE_KEYBOARD = {
     'kontroler_keyb_clear_stop': 'Чистые остановки',
     'kontroler_keyb_dirty_stop': 'Грязные остановки',
     'kontroler_keyb_bus': 'Автобусы',
-    'kontroler_keyb_trolleybus': 'Тролейбусы',
+    'kontroler_keyb_trolleybus': 'Троллейбусы',
     'settings_keyb_time': 'Время',
     'settings_keyb_time_inside_1': '30 мин',
     'settings_keyb_time_inside_2': '1 час',
@@ -47,7 +47,8 @@ MESSAGE = {
     'not_bus': 'Такого автобуса не существует!',
     'not_trolleibys': 'Такого троллейбуса не существует!',
     'menu': 'Меню',
-    'city_available': 'Доступные города: Брест, Гомель, Гродно.'
+    'city_available': 'Доступные города: Брест, Гомель, Гродно.',
+    'spam_msg': 'Хватит спамить!'
 }
 
 alias_city = {MESSAGE_KEYBOARD['settings_city_1']: 'brest',
