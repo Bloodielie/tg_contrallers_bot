@@ -10,10 +10,13 @@
  
 ## Libraries
 
- - requirements.txt
+**Install:**
+```bash
+    pip install -r requirements.txt
+```
  
 ## Settings
 
- - In config.py
+ - It is necessary to create the settings.ini file following the example settings.example.ini
  
 > works with [API](https://github.com/Bloodielie/api_controllers)
